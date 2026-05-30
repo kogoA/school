@@ -80,6 +80,18 @@ npm run preview
 
 ビルド済みの `dist/` をローカルでプレビューします。
 
+## GitHub Pagesで公開する
+
+このプロジェクトは GitHub Actions で GitHub Pages にデプロイできます。
+
+1. GitHubでリポジトリを作成します。
+2. このプロジェクトを `main` ブランチにpushします。
+3. GitHubのリポジトリ画面で `Settings` > `Pages` を開きます。
+4. `Build and deployment` の `Source` を `GitHub Actions` に設定します。
+5. `main` ブランチへpushすると、自動で `dist/` がビルドされて公開されます。
+
+リポジトリ名が `school` の場合、公開URLは通常 `https://ユーザー名.github.io/school/` になります。
+
 ## 編集メモ
 
 - ページの表示順を変更する場合は `src/pages/index.astro` を編集します。

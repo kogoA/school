@@ -1,0 +1,60 @@
+---
+const voices = [
+  {
+    name: 'テスト A.K.',
+    age: '30代・会社員',
+    course: 'ビジネス英語コース',
+    text: 'テスト英語塾に入って半年でTOEICが250点アップしました。講師の方が私の弱点を的確に把握して、効率的な学習プランを立ててくれたのが良かったです。仕事の英語メールも自信を持って書けるようになりました。',
+    score: '★★★★★',
+  },
+  {
+    name: 'テスト M.T.',
+    age: '20代・大学院生',
+    course: 'TOEIC対策コース',
+    text: '留学前に英語力を上げたくて受講しました。英会話のスピーキングが特に苦手でしたが、毎回のフィードバックが丁寧で、徐々に話せるようになりました。留学先でも日常会話に困らないレベルになれました。',
+    score: '★★★★★',
+  },
+  {
+    name: 'テスト Y.S.',
+    age: '40代・管理職',
+    course: 'ビジネス英語コース',
+    text: '外国人の部下が増え、英語でのマネジメントが必要になりました。テスト英語塾で実践的なビジネス英語を学び、会議でも積極的に発言できるようになりました。投資する価値がありました。',
+    score: '★★★★★',
+  },
+  {
+    name: 'テスト R.N.',
+    age: '20代・社会人',
+    course: '英会話コース',
+    text: '英語は学生時代から苦手でした。でも講師の方が優しく、間違いを恐れずに話せる環境を作ってくれたので、どんどん自信がつきました。今では外国のお客様と普通に会話できます。',
+    score: '★★★★★',
+  },
+]
+---
+
+<section id="voice" class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-sm font-bold text-gold tracking-widest mb-2">VOICE</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-navy">受講生の声</h2>
+      <p class="text-ink/65 mt-3">テスト英語塾で英語力を伸ばした受講生の感想です</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {voices.map((v) => (
+        <div class="rounded-2xl border border-navy/10 bg-ivory p-6 shadow-[0_16px_45px_rgba(8,17,38,0.06)]">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-12 h-12 rounded-full bg-navy text-gold flex items-center justify-center font-bold text-lg shrink-0">
+              {v.name[3]}
+            </div>
+            <div>
+              <p class="font-bold text-navy">{v.name}</p>
+              <p class="text-xs text-ink/55">{v.age} | {v.course}</p>
+              <p class="text-gold text-sm">{v.score}</p>
+            </div>
+          </div>
+          <p class="text-sm text-ink/75 leading-relaxed">「{v.text}」</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+const services = [
+  {
+    icon: '01',
+    title: 'マンツーマン指導',
+    desc: '専属講師があなた専用のカリキュラムを作成',
+  },
+  {
+    icon: '02',
+    title: '柔軟なスケジュール',
+    desc: '朝7時〜夜22時まで、ライフスタイルに合わせて受講',
+  },
+  {
+    icon: '03',
+    title: 'Slack質問対応',
+    desc: 'レッスン外もSlackで気軽に質問・相談できる',
+  },
+  {
+    icon: '04',
+    title: 'レッスン録画あり',
+    desc: '復習用に全レッスンを録画・いつでも視聴可能',
+  },
+]
+---
+
+<section class="py-16 px-4 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      {services.map((s) => (
+        <div class="flex flex-col items-center text-center gap-3 p-6 rounded-2xl border border-navy/10 bg-white shadow-[0_14px_45px_rgba(8,17,38,0.06)] transition-all hover:border-gold/60">
+          <span class="text-sm font-bold tracking-widest text-gold">{s.icon}</span>
+          <h3 class="font-bold text-navy text-sm md:text-base">{s.title}</h3>
+          <p class="text-xs text-ink/60 leading-relaxed">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

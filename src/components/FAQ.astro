@@ -1,0 +1,53 @@
+---
+const faqs = [
+  {
+    q: '英語がまったくできない初心者でも大丈夫ですか？',
+    a: 'はい、もちろんです。中学英語から丁寧に指導しますので、英語が全くできない方でも安心してお申し込みください。まずは無料カウンセリングで現在のレベルを確認し、最適なプランをご提案します。',
+  },
+  {
+    q: 'レッスンはどのように行われますか？',
+    a: 'ZoomまたはGoogle Meetを使ったオンラインレッスンです。パソコン・スマートフォン・タブレットのいずれかがあれば受講できます。インターネット環境があれば、全国どこからでも受講可能です。',
+  },
+  {
+    q: '忙しくてレッスンに参加できない場合はどうなりますか？',
+    a: '急なキャンセルは24時間前までにご連絡いただければ無料で振替が可能です。また、レッスンは録画されますので、後から視聴することもできます。',
+  },
+  {
+    q: '料金はいつ支払いますか？',
+    a: '月初にクレジットカードまたは銀行振込でお支払いいただきます。初月は日割り計算となります。',
+  },
+  {
+    q: '途中でコースを変更することはできますか？',
+    a: 'はい、可能です。学習の進捗や目標の変化に応じて、翌月からコースを変更することができます。変更希望の場合は月末までにご連絡ください。',
+  },
+  {
+    q: '解約・退会はいつでもできますか？',
+    a: 'はい、いつでも退会できます。退会希望の場合は翌月15日までにご連絡いただければ、翌月末での退会となります。長期縛りや解約金はありません。',
+  },
+]
+---
+
+<section id="faq" class="py-20 px-4 bg-white">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-10">
+      <p class="text-sm font-bold text-gold tracking-widest mb-2">FAQ</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-navy">よくある質問</h2>
+    </div>
+
+    <div class="space-y-3">
+      {faqs.map((faq) => (
+        <details class="group rounded-xl border border-navy/10 bg-white shadow-[0_12px_36px_rgba(8,17,38,0.05)]">
+          <summary class="flex items-center justify-between px-5 py-4 text-navy cursor-pointer hover:text-gold transition-colors list-none gap-4">
+            <span class="font-medium text-sm md:text-base leading-snug">Q. {faq.q}</span>
+            <span class="shrink-0 w-7 h-7 rounded-full border border-gold text-gold flex items-center justify-center font-bold text-lg leading-none group-open:rotate-45 transition-transform duration-200">
+              +
+            </span>
+          </summary>
+          <div class="px-5 pb-5 text-sm text-ink/70 leading-relaxed">
+            <span class="font-bold text-gold mr-1">A.</span>{faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

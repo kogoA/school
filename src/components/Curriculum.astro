@@ -1,0 +1,75 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: '無料カウンセリング',
+    description: '現在の英語力・目標・学習スタイルをヒアリング。最適なコースと学習計画を提案します。',
+    duration: '60分',
+  },
+  {
+    number: '02',
+    title: '体験レッスン',
+    description: '実際のレッスンを体験。講師との相性や学習スタイルが合うか確認できます。',
+    duration: '45分',
+  },
+  {
+    number: '03',
+    title: '学習プラン作成',
+    description: '目標達成に向けた個別の学習プランを作成。毎週の進捗に合わせて柔軟に調整します。',
+    duration: '入会後すぐ',
+  },
+  {
+    number: '04',
+    title: 'レッスン開始',
+    description: 'マンツーマンレッスンで着実に英語力を向上。レッスン外の学習もSlackでサポート。',
+    duration: '週2〜3回',
+  },
+  {
+    number: '05',
+    title: '定期進捗確認',
+    description: '月1回の進捗面談で目標に対する達成度を確認。必要に応じてプランを見直します。',
+    duration: '月1回',
+  },
+]
+---
+
+<section id="curriculum" class="py-20 px-4 bg-pearl">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-sm font-bold text-sage-dark tracking-widest mb-2">CURRICULUM</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-navy">学習の流れ</h2>
+      <p class="text-ink/65 mt-3">無料カウンセリングから始まり、目標達成まで伴走します</p>
+    </div>
+
+    <div class="rounded-2xl border border-navy/10 bg-white shadow-[0_24px_70px_rgba(8,17,38,0.08)]">
+      <div class="divide-y divide-navy/10">
+        {steps.map((step) => (
+          <div class="grid gap-5 px-5 py-7 md:grid-cols-[120px_1fr_120px] md:items-center md:px-8">
+            <div class="flex items-center gap-4 md:block">
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-sage/35 bg-pearl text-lg font-bold text-sage-dark shadow-inner md:mx-auto">
+                {step.number}
+              </span>
+              <p class="md:hidden text-xs font-bold tracking-widest text-sage-dark">
+                STEP {step.number}
+              </p>
+            </div>
+
+            <div class="md:border-l md:border-navy/10 md:pl-8">
+              <p class="hidden text-xs font-bold tracking-widest text-sage-dark md:block">
+                STEP {step.number}
+              </p>
+              <h3 class="mt-1 text-xl font-bold text-navy">{step.title}</h3>
+              <p class="text-sm text-ink/65 leading-relaxed">{step.description}</p>
+            </div>
+
+            <div class="md:text-right">
+              <span class="inline-flex rounded-full border border-sage/25 bg-sage/10 px-3 py-1 text-xs font-bold text-sage-dark">
+                {step.duration}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

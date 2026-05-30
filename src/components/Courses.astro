@@ -1,0 +1,82 @@
+---
+const courses = [
+  {
+    name: 'ビジネス英語コース',
+    badge: '人気No.1',
+    badgeColor: 'bg-gold text-navy-dark',
+    description: '実践的なビジネス英語を習得。会議・メール・プレゼンで使える英語力を身につけます。',
+    price: '¥29,800',
+    unit: '/ 月（週2回）',
+    features: ['マンツーマンレッスン', 'オリジナルテキスト', '学習計画作成', 'Slack質問対応', '録画視聴可'],
+    highlight: true,
+  },
+  {
+    name: 'TOEIC対策コース',
+    badge: 'スコアアップ特化',
+    badgeColor: 'bg-navy text-white',
+    description: 'TOEIC L&Rのスコアを効率的に伸ばします。目標スコアに向けた戦略的な学習計画を提供。',
+    price: '¥24,800',
+    unit: '/ 月（週2回）',
+    features: ['マンツーマンレッスン', 'TOEIC公式問題集', '模擬テスト', 'スコア分析', '弱点克服プログラム'],
+    highlight: false,
+  },
+  {
+    name: '英会話コース',
+    badge: '初心者歓迎',
+    badgeColor: 'bg-mist text-navy',
+    description: '日常英会話から始めて、自然な表現力を養います。話すことへの自信をつけていきましょう。',
+    price: '¥19,800',
+    unit: '/ 月（週2回）',
+    features: ['マンツーマンレッスン', '日常会話テキスト', 'スピーキング録音', '発音フィードバック', 'フリートーク'],
+    highlight: false,
+  },
+]
+---
+
+<section id="courses" class="py-20 px-4 bg-ivory">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-sm font-bold text-gold tracking-widest mb-2">COURSES</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-navy">コース一覧</h2>
+      <p class="text-ink/65 mt-3">目的に合わせてコースをお選びください。無料体験レッスン後に決定できます。</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {courses.map((c) => (
+        <div class={`rounded-2xl overflow-hidden border flex flex-col shadow-[0_18px_55px_rgba(8,17,38,0.08)] ${c.highlight ? 'border-gold bg-navy md:scale-105' : 'border-navy/10 bg-white'}`}>
+          <div class={`${c.highlight ? 'bg-navy text-white' : 'bg-white'} p-6`}>
+            <span class={`${c.badgeColor} text-xs font-bold px-3 py-1 rounded-full`}>
+              {c.badge}
+            </span>
+            <h3 class={`text-xl font-bold mt-4 ${c.highlight ? 'text-white' : 'text-navy'}`}>{c.name}</h3>
+            <p class={`text-sm mt-2 leading-relaxed ${c.highlight ? 'text-white/65' : 'text-ink/60'}`}>{c.description}</p>
+          </div>
+          <div class={`p-6 flex flex-col flex-1 ${c.highlight ? 'bg-navy-dark text-white' : 'bg-white'}`}>
+            <div class="mb-6">
+              <span class={`text-4xl font-bold ${c.highlight ? 'text-gold' : 'text-navy'}`}>{c.price}</span>
+              <span class={`text-sm ${c.highlight ? 'text-white/50' : 'text-ink/45'}`}>{c.unit}</span>
+            </div>
+            <ul class="space-y-2 mb-8 flex-1">
+              {c.features.map((f) => (
+                <li class={`flex items-center gap-2 text-sm ${c.highlight ? 'text-white/70' : 'text-ink/65'}`}>
+                  <span class="text-gold font-bold">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <a
+              href="#contact"
+              class={`block text-center font-bold py-3 rounded-full transition-colors ${
+                c.highlight
+                  ? 'bg-gold hover:bg-gold-dark text-navy-dark hover:text-white'
+                  : 'border border-navy text-navy hover:bg-navy hover:text-white'
+              }`}
+            >
+              無料体験を申し込む
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

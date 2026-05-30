@@ -1,0 +1,62 @@
+---
+const points = [
+  { label: '成果実績', desc: '累計1,000名以上の受講生が目標を達成', icon: '01' },
+  { label: '広告宣伝費ゼロ', desc: '口コミ・紹介のみで運営。その分受講料を低く設定', icon: '02' },
+  { label: '全国対応', desc: '完全オンラインで日本全国・海外からも受講可能', icon: '03' },
+]
+---
+
+<section class="py-20 px-4 bg-navy text-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-sm font-bold text-gold tracking-widest mb-2">WHY US</p>
+      <h2 class="text-2xl md:text-3xl font-bold">テスト英語塾が選ばれる理由</h2>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-10 items-center">
+      <!-- ドーナツチャート（CSS製） -->
+      <div class="shrink-0 flex flex-col items-center gap-3">
+        <div class="relative w-44 h-44">
+          <svg viewBox="0 0 36 36" class="w-full h-full -rotate-90">
+            <circle cx="18" cy="18" r="15.9155" fill="none" stroke="#ffffff1a" stroke-width="3.5" />
+            <circle
+              cx="18" cy="18" r="15.9155"
+              fill="none"
+              stroke="#C8A45D"
+              stroke-width="3.5"
+              stroke-dasharray="98 100"
+              stroke-linecap="round"
+            />
+          </svg>
+          <div class="absolute inset-0 flex flex-col items-center justify-center">
+            <span class="text-4xl font-bold text-gold">98</span>
+            <span class="text-sm text-white/60">%</span>
+          </div>
+        </div>
+        <p class="text-sm text-white/65 font-medium">受講生満足度</p>
+      </div>
+
+      <!-- 特徴リスト -->
+      <div class="flex-1 space-y-5">
+        {points.map((p) => (
+          <div class="flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.06] px-6 py-5 shadow-[0_18px_45px_rgba(0,0,0,0.12)]">
+            <span class="shrink-0 text-sm font-bold tracking-widest text-gold">{p.icon}</span>
+            <div>
+              <h3 class="font-bold text-base mb-1">{p.label}</h3>
+              <p class="text-sm text-white/65 leading-relaxed">{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+        href="#contact"
+        class="inline-block bg-gold hover:bg-gold-dark text-navy-dark hover:text-white font-bold px-10 py-4 rounded-full text-base transition-colors shadow-[0_18px_48px_rgba(200,164,93,0.25)]"
+      >
+        無料体験を申し込む →
+      </a>
+    </div>
+  </div>
+</section>

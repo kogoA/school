@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0F1B3D;
+  --color-navy-dark: #081126;
+  --color-gold: #C8A45D;
+  --color-gold-dark: #A8863F;
+  --color-ivory: #F7F3EA;
+  --color-mist: #EEF2F6;
+  --color-sage: #6F8F8A;
+  --color-sage-dark: #3F6663;
+  --color-pearl: #F4F7F6;
+  --color-ink: #172033;
+  --font-family-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #f7f3ea;
+    color: #172033;
+  }
+}

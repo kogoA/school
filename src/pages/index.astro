@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Hero from '../components/Hero.astro'
+import Recommend from '../components/Recommend.astro'
+import Teachers from '../components/Teachers.astro'
+import WhyUs from '../components/WhyUs.astro'
+import Courses from '../components/Courses.astro'
+import ServiceIcons from '../components/ServiceIcons.astro'
+import Results from '../components/Results.astro'
+import Youtube from '../components/Youtube.astro'
+import Voice from '../components/Voice.astro'
+import Curriculum from '../components/Curriculum.astro'
+import FAQ from '../components/FAQ.astro'
+import Contact from '../components/Contact.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout>
+  <Header />
+  <main>
+    <Hero />
+    <Recommend />
+    <Teachers />
+    <WhyUs />
+    <Courses />
+    <ServiceIcons />
+    <Results />
+    <Youtube />
+
+    <!-- CTA バナー -->
+    <section class="py-16 px-4 bg-navy text-white text-center">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          まずは無料体験レッスンから始めませんか？
+        </h2>
+        <p class="text-white/65 mb-8">
+          カウンセリング・体験レッスン完全無料。申し込み後のしつこい勧誘は一切行いません。
+        </p>
+        <a
+          href="#contact"
+          class="inline-block bg-gold text-navy-dark hover:bg-gold-dark hover:text-white font-bold px-10 py-4 rounded-full text-lg transition-colors shadow-[0_18px_48px_rgba(200,164,93,0.25)]"
+        >
+          無料体験を申し込む →
+        </a>
+      </div>
+    </section>
+
+    <Voice />
+    <Curriculum />
+    <FAQ />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>

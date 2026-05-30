@@ -1,0 +1,65 @@
+---
+const teachers = [
+  {
+    name: 'テスト 太郎',
+    nameEn: 'T. Tester',
+    title: '代表講師',
+    bio: 'テスト大学英文科卒業後、テスト英語塾を設立。ビジネス英語指導歴10年以上。TOEIC満点取得。',
+    tags: ['ビジネス英語', 'TOEIC', '発音矯正'],
+    initial: 'T',
+    color: 'bg-gold',
+  },
+  {
+    name: 'テスト 花子',
+    nameEn: 'H. Tester',
+    title: '上級講師',
+    bio: 'テスト大学院修了。帰国子女として幼少期をテスト国で過ごす。英検1級保有。英会話・ライティング指導が得意。',
+    tags: ['英会話', 'ライティング', '英検対策'],
+    initial: 'H',
+    color: 'bg-navy',
+  },
+  {
+    name: 'テスト 一郎',
+    nameEn: 'I. Tester',
+    title: '講師',
+    bio: 'テスト外国語大学卒業。海外留学経験あり。受験英語からビジネス英語まで幅広く対応可能。',
+    tags: ['受験英語', '文法', 'リスニング'],
+    initial: 'I',
+    color: 'bg-mist',
+  },
+]
+---
+
+<section id="teachers" class="py-20 px-4 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <p class="text-sm font-bold text-gold tracking-widest mb-2">TEACHERS</p>
+      <h2 class="text-2xl md:text-3xl font-bold text-navy">先生紹介</h2>
+      <p class="text-ink/60 text-sm mt-3">経験豊富な講師があなたの英語学習を全力でサポートします</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {teachers.map((t) => (
+        <div class="bg-white rounded-2xl border border-navy/10 shadow-[0_18px_55px_rgba(8,17,38,0.08)] overflow-hidden transition-shadow hover:shadow-[0_24px_70px_rgba(8,17,38,0.12)] text-center">
+          <!-- 丸アバター -->
+          <div class="pt-8 pb-4 flex justify-center bg-ivory/60">
+            <div class={`w-24 h-24 rounded-full ${t.color} ${t.color === 'bg-mist' ? 'text-navy' : 'text-white'} flex items-center justify-center text-4xl font-bold border-4 border-white shadow-md`}>
+              {t.initial}
+            </div>
+          </div>
+          <div class="px-6 pb-8">
+            <p class="text-xs text-gold font-bold mb-1 tracking-widest">{t.title}</p>
+            <h3 class="text-lg font-bold text-navy">{t.name}</h3>
+            <p class="text-xs text-ink/40 mb-3">{t.nameEn}</p>
+            <p class="text-sm text-ink/70 leading-relaxed mb-4">{t.bio}</p>
+            <div class="flex flex-wrap justify-center gap-2">
+              {t.tags.map((tag) => (
+                <span class="bg-ivory text-navy text-xs font-medium px-3 py-1 rounded-full border border-gold/20">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

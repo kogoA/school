@@ -3,6 +3,8 @@ import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
 
+import cloudflare from '@astrojs/cloudflare';
+
 const [githubOwner, githubRepo] = process.env.GITHUB_REPOSITORY?.split('/') ?? [];
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 const isUserPage = githubOwner && githubRepo && githubRepo.toLowerCase() === `${githubOwner.toLowerCase()}.github.io`;
@@ -11,7 +13,10 @@ const isUserPage = githubOwner && githubRepo && githubRepo.toLowerCase() === `${
 export default defineConfig({
   site: githubOwner ? `https://${githubOwner}.github.io` : undefined,
   base: isGitHubActions && githubRepo && !isUserPage ? `/${githubRepo}` : '/',
+
   vite: {
     plugins: [tailwindcss()]
-  }
+  },
+
+  adapter: cloudflare()
 });

@@ -95,7 +95,7 @@
             type="submit"
             class="w-full bg-navy hover:bg-navy-dark text-white font-bold py-4 rounded-full text-lg transition-colors shadow-[0_18px_48px_rgba(8,17,38,0.18)]"
           >
-            無料相談を申し込む
+            入力内容を確認する
           </button>
 
           <p class="text-xs text-ink/45 text-center">
@@ -103,6 +103,54 @@
           </p>
         </div>
       </form>
+
+      <div id="form-confirm" class="hidden">
+        <div class="mb-8 text-center">
+          <p class="text-sm font-bold text-gold tracking-widest mb-2">CONFIRM</p>
+          <h3 class="text-xl font-bold text-navy">送信内容の確認</h3>
+          <p class="text-sm text-ink/60 mt-2">内容をご確認のうえ、問題なければ送信してください。</p>
+        </div>
+
+        <dl class="divide-y divide-navy/10 rounded-xl border border-navy/10 bg-ivory/70">
+          <div class="grid gap-1 px-4 py-4 md:grid-cols-[140px_1fr] md:gap-4">
+            <dt class="text-sm font-bold text-navy">お名前</dt>
+            <dd id="confirm-name" class="text-sm text-ink/70 break-words"></dd>
+          </div>
+          <div class="grid gap-1 px-4 py-4 md:grid-cols-[140px_1fr] md:gap-4">
+            <dt class="text-sm font-bold text-navy">メールアドレス</dt>
+            <dd id="confirm-email" class="text-sm text-ink/70 break-words"></dd>
+          </div>
+          <div class="grid gap-1 px-4 py-4 md:grid-cols-[140px_1fr] md:gap-4">
+            <dt class="text-sm font-bold text-navy">電話番号</dt>
+            <dd id="confirm-phone" class="text-sm text-ink/70 break-words"></dd>
+          </div>
+          <div class="grid gap-1 px-4 py-4 md:grid-cols-[140px_1fr] md:gap-4">
+            <dt class="text-sm font-bold text-navy">ご希望のコース</dt>
+            <dd id="confirm-course" class="text-sm text-ink/70 break-words"></dd>
+          </div>
+          <div class="grid gap-1 px-4 py-4 md:grid-cols-[140px_1fr] md:gap-4">
+            <dt class="text-sm font-bold text-navy">ご質問・ご要望</dt>
+            <dd id="confirm-message" class="whitespace-pre-wrap text-sm text-ink/70 break-words"></dd>
+          </div>
+        </dl>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <button
+            id="form-back"
+            type="button"
+            class="w-full rounded-full border border-navy px-6 py-3 text-sm font-bold text-navy transition-colors hover:bg-navy hover:text-white"
+          >
+            修正する
+          </button>
+          <button
+            id="form-send"
+            type="button"
+            class="w-full rounded-full bg-navy px-6 py-3 text-sm font-bold text-white shadow-[0_18px_48px_rgba(8,17,38,0.18)] transition-colors hover:bg-navy-dark"
+          >
+            この内容で送信する
+          </button>
+        </div>
+      </div>
 
       <div id="form-success" class="hidden text-center py-8">
         <p class="text-3xl mb-4 text-gold">✓</p>
@@ -118,13 +166,65 @@
 
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement | null
+  const confirm = document.getElementById('form-confirm')
   const success = document.getElementById('form-success')
+  const backBtn = document.getElementById('form-back') as HTMLButtonElement | null
+  const sendBtn = document.getElementById('form-send') as HTMLButtonElement | null
+
+  const setConfirmText = (id: string, value: string) => {
+    const element = document.getElementById(id)
+    if (element) element.textContent = value || '未入力'
+  }
+
+  const getFieldValue = (name: string) => {
+    const field = form?.elements.namedItem(name)
+    if (
+      field instanceof HTMLInputElement ||
+      field instanceof HTMLTextAreaElement ||
+      field instanceof HTMLSelectElement
+    ) {
+      return field.value.trim()
+    }
+    return ''
+  }
+
+  const showConfirm = () => {
+    const course = form?.elements.namedItem('course')
+    const courseText = course instanceof HTMLSelectElement
+      ? course.selectedOptions[0]?.textContent?.trim() ?? ''
+      : ''
+
+    setConfirmText('confirm-name', getFieldValue('name'))
+    setConfirmText('confirm-email', getFieldValue('email'))
+    setConfirmText('confirm-phone', getFieldValue('phone'))
+    setConfirmText('confirm-course', courseText)
+    setConfirmText('confirm-message', getFieldValue('message'))
+
+    form?.classList.add('hidden')
+    confirm?.classList.remove('hidden')
+  }
+
+  const showForm = () => {
+    confirm?.classList.add('hidden')
+    form?.classList.remove('hidden')
+  }
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault()
-    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement
-    btn.disabled = true
-    btn.textContent = '送信中...'
+    if (!form.checkValidity()) {
+      form.reportValidity()
+      return
+    }
+    showConfirm()
+  })
+
+  backBtn?.addEventListener('click', showForm)
+
+  sendBtn?.addEventListener('click', async () => {
+    if (!form || !sendBtn) return
+
+    sendBtn.disabled = true
+    sendBtn.textContent = '送信中...'
 
     try {
       const res = await fetch(form.action, {
@@ -132,17 +232,17 @@
         body: new FormData(form),
       })
       if (res.ok) {
-        form.classList.add('hidden')
+        confirm?.classList.add('hidden')
         success?.classList.remove('hidden')
       } else {
         alert('送信に失敗しました。時間をおいて再度お試しください。')
-        btn.disabled = false
-        btn.textContent = '無料相談を申し込む'
+        sendBtn.disabled = false
+        sendBtn.textContent = 'この内容で送信する'
       }
     } catch {
       alert('送信に失敗しました。ネットワーク接続を確認してください。')
-      btn.disabled = false
-      btn.textContent = '無料相談を申し込む'
+      sendBtn.disabled = false
+      sendBtn.textContent = 'この内容で送信する'
     }
   })
 </script>

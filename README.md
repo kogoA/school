@@ -80,17 +80,51 @@ npm run preview
 
 ビルド済みの `dist/` をローカルでプレビューします。
 
-## GitHub Pagesで公開する
+## Cloudflare Workersで公開する
 
-このプロジェクトは GitHub Actions で GitHub Pages にデプロイできます。
+このプロジェクトは Cloudflare Workers Static Assets にデプロイし、独自ドメイン `s-global.co.jp` で公開する想定です。
 
-1. GitHubでリポジトリを作成します。
-2. このプロジェクトを `main` ブランチにpushします。
-3. GitHubのリポジトリ画面で `Settings` > `Pages` を開きます。
-4. `Build and deployment` の `Source` を `GitHub Actions` に設定します。
-5. `main` ブランチへpushすると、自動で `dist/` がビルドされて公開されます。
+1. Cloudflare に `s-global.co.jp` を追加します。
+2. ドメイン管理会社側で、Cloudflare が指定するネームサーバーへ変更します。
+3. Cloudflare の `Workers & Pages` から Workers プロジェクトを作成します。
+4. GitHub リポジトリを接続します。
+5. ビルド設定を以下にします。
 
-リポジトリ名が `school` の場合、公開URLは通常 `https://ユーザー名.github.io/school/` になります。
+```text
+Framework preset: Astro
+Build command: npm run build
+Deploy command: npm run deploy
+Root directory: /
+Node.js version: 22.12.0 以上
+```
+
+デプロイ先とドメインは `wrangler.jsonc` で明示しています。
+
+```jsonc
+{
+  "name": "s-global",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    {
+      "pattern": "s-global.co.jp",
+      "custom_domain": true
+    }
+  ]
+}
+```
+
+ローカルから手動デプロイする場合は以下を実行します。
+
+```sh
+npm run build
+npm run deploy
+```
+
+必要に応じて `www.s-global.co.jp` から `s-global.co.jp` へのリダイレクトを Cloudflare の Redirect Rules で設定します。
+
+Astro の `site` は `https://s-global.co.jp` に設定しています。
 
 ## 編集メモ
 
